@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<aiml version="2.0">
+<category>
+    <pattern>WHAT IS THE INCOME</pattern>
+    <template><srai> HOW MUCH CAN I MAKE </srai>
+    </template>
+</category>
+
+
+
+<category>
+    <pattern> WHAT IS THE AVERAGE *</pattern>
+    <template><srai> WHAT IS THE <star/> </srai>
+    </template>
+</category>
+
+<category>
+    <pattern> * SALARY</pattern>
+    <template><srai> <star/> INCOME </srai>
+    </template>
+</category>
+
+<category>
+    <pattern>HOW MUCH MONEY *</pattern>
+    <template><srai> HOW MUCH <star/> </srai>
+    </template>
+</category>
+
+<category>
+    <pattern>* CAN I EARN</pattern>
+    <template><srai> <star/> CAN I MAKE </srai>
+    </template>
+</category>
+
+<category>
+    <pattern>* IS REQUIRED</pattern>
+    <template><srai> <star/> IS NEEDED </srai>
+    </template>
+</category>
+
+</aiml>

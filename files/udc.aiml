@@ -1,0 +1,339 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<aiml>
+    
+    <category>
+        <pattern>*</pattern>
+        <template>sorry I dont know that one?</template>
+    </category>
+    
+    <category> 
+        <pattern>I WOULD LIKE TO KNOW ABOUT *</pattern>
+        <template> I dont know that topic</template>
+    </category>
+    
+<category>
+    <pattern>I would like to know about <set>jobs</set></pattern>
+    <template>
+        sure what would you like to know about
+        <think><set name="topic"><star/></set></think>
+    </template>
+    
+</category>
+
+<category>
+    <pattern>_ TALK ^</pattern>
+    <template><srai> <star/> KNOW <star index="2"/> </srai>
+    </template>
+</category>
+
+<category>
+    <pattern>_ LEARN ^</pattern>
+    <template><srai> <star/> KNOW <star index="2"/> </srai>
+    </template>
+</category>
+
+<category>
+<pattern>GREETING</pattern>
+<template>
+    You are about to take a career test if you want to skip the test and learn 
+    about a result say "I would like to know about _"
+<button>I would like to begin the test
+</button>
+
+</template>
+</category>
+
+<category><pattern>HI</pattern>
+<template><srai> GREETING </srai>
+</template>
+</category>
+
+<category><pattern>HELLO</pattern>
+<template><srai>GREETING</srai>
+</template>
+</category>
+
+<category>
+<pattern>I WOULD LIKE TO BEGIN THE TEST</pattern>
+<template>
+        <think> <set name = "Machine Learning Engineer"> 0 </set> 
+        <set name = "Computer Hardware Engineer"> 0 </set>
+        <set name = "Web Developer"> 0 </set>
+        <set name = "Software Designer"> 0 </set>
+        <set name = "Cyber Security"> 0 </set></think>
+        QUESTION 1
+        The most important part of the computer?
+    <button>
+        <text>The internal hardware that works together.</text>
+        <postback>Question 1 A</postback>
+    </button>
+
+    <button> 
+        <text>The software that interacts with the hardware and user.</text>
+        <postback>Question 1 B</postback>
+    </button>
+    <button>
+        <text>The user interface that the user interacts with.</text>
+        <postback>Question 1 C</postback>
+    </button>
+</template>
+</category>
+
+<category>
+    <pattern> Question 1 *</pattern>
+    <template> <think><set name= "ans"><star/></set> </think>
+        <condition name = "ans">
+            <li value = "A"><think>
+                <set name = "Computer Hardware Engineer"> <map name="successor"><get name = "Computer Hardware Engineer"/></map></set>
+                </think></li>
+            <li value = "B"> <think>
+                <set name = "Software Designer"> <map name="successor"><get name = "Software Designer"/></map></set>
+                </think></li>
+            <li value = "C"> <think>
+                <set name = "Web Developer"> <map name="successor"><get name = "Web Developer"/></map></set>
+            <set name = "Cyber Security"> <map name="successor"><get name = "Cyber Security"/></map></set>
+            </think></li>
+            </condition>
+            <learn>
+                <category>
+                    <pattern>WHAT WAS MY ANSWER TO QUESTION 1</pattern>
+                    <template>You answered <get name = "ans"/></template>
+                </category>
+            </learn>
+            Question 2 Which sounds the most interesting to you?
+            <button>
+            <text>Harware</text>
+            <postback> Question 2 A</postback>
+            </button>
+            <button>
+            <text>Software</text>
+            <postback>Question 2 B</postback>
+            </button>
+            <button>
+            <text>Security</text>
+            <postback>Question 2 C</postback>
+            </button>
+            <button>
+            <text>Internet</text>
+            <postback>Question 2 D</postback>
+            </button>
+    </template>
+</category>
+
+<category>
+    <pattern> Question 2 *</pattern>
+    <template> 
+        <think><set name= "ans"><star/></set> </think>
+        <condition name = "ans">
+            <li value = "A"><think>
+                <set name = "Computer Hardware Engineer"> <map name="successor"><get name = "Computer Hardware Engineer"/></map></set>
+            </think></li>
+            <li value = "B"> <think>
+                <set name = "Software Designer"> <map name="successor"><get name = "Software Designer"/></map></set>
+                <set name = "Machine Learning Engineer"> <map name="successor"><get name = "Machine Learning Engineer"/></map></set>
+            </think></li>
+            <li value = "C"> <think>
+                <set name = "Cyber Security"> <map name="successor"><get name = "Cyber Security"/></map></set>
+            </think></li>
+            <li value = "D"> <think>
+                <set name = "Web Developer"> <map name="successor"><get name = "Web Developer"/></map></set>
+            </think></li>
+            </condition>
+            <learn>
+                <category>
+                    <pattern>WHAT WAS MY ANSWER TO QUESTION 2</pattern>
+                    <template>You answered <get name = "ans"/></template>
+                </category>
+            </learn>
+             Question 3 Do you prefeer Logic Design or a bit of both?
+             <button>
+            <text>Logic</text>
+            <postback> Question 3 A</postback>
+            </button>
+            <button>
+            <text>Design</text>
+            <postback>Question 3 B</postback>
+            </button>
+            <button>
+            <text>Both</text>
+            <postback>Question 3 C</postback>
+            </button>
+    </template>
+</category>
+
+<category>
+    <pattern>Question 3 *</pattern>
+    <template>
+        <think><set name= "ans"><star/></set> </think>
+        <condition name = "ans">
+            <li value = "A"><think>
+                <set name = "Computer Hardware Engineer"> <map name="successor"><get name = "Computer Hardware Engineer"/></map></set>
+                <set name = "Machine Learning Engineer"> <map name="successor"><get name = "Machine Learning Engineer"/></map></set>
+                <set name = "Cyber Security"> <map name="successor"><get name = "Cyber Security"/></map></set>
+                </think></li>
+            <li value = "B"> <think>
+                <set name = "Web Developer"> <map name="successor"><get name = "Web Developer"/></map></set>
+                </think></li>
+            <li value = "C"> <think>
+                <set name = "Software Designer"> <map name="successor"><get name = "Software Designer"/></map></set>
+            </think></li>
+            </condition>
+            <learn>
+                <category>
+                    <pattern>WHAT WAS MY ANSWER TO QUESTION 3</pattern>
+                    <template>You answered <get name = "ans"/></template>
+                </category>
+            </learn>
+            Question 4 How much impact would you like your work to hold?
+             <button>
+            <text>A lot</text>
+            <postback> Question 4 A</postback>
+            </button>
+            <button>
+            <text>Somewhat</text>
+            <postback>Question 4 B</postback>
+            </button>
+            <button>
+            <text>Little</text>
+            <postback>Question 4 C</postback>
+            </button>
+        </template>
+</category>
+
+<category>
+    <pattern>Question 4 *</pattern>
+    <template>
+     <think><set name= "ans"><star/></set> </think>
+        <condition name = "ans">
+            <li value = "A"><think>
+                <set name = "Machine Learning Engineer"> <map name="successor"><get name = "Machine Learning Engineer"/></map></set>
+                <set name = "Cyber Security"> <map name="successor"><get name = "Cyber Security"/></map></set>
+                </think></li>
+            <li value = "B"> <think>
+                <set name = "Computer Hardware Engineer"> <map name="successor"><get name = "Computer Hardware Engineer"/></map></set> 
+                <set name = "Software Designer"> <map name="successor"><get name = "Software Designer"/></map></set>
+                </think></li>
+            <li value = "C"> <think>
+               <set name = "Web Developer"> <map name="successor"><get name = "Web Developer"/></map></set>
+            </think></li>
+        </condition>
+        
+        <learn>
+                <category>
+                    <pattern>WHAT WAS MY ANSWER TO QUESTION 4</pattern>
+                    <template>You answered <get name = "ans"/></template>
+                </category>
+        </learn>
+    
+     Question 5 What enviorment would you like to work in?
+             <button>
+            <text>more physical envorment</text>
+            <postback> Question 5 A</postback>
+            </button>
+            <button>
+            <text>A ever changing envorment</text>
+            <postback>Question 5 B</postback>
+            </button>
+            <button>
+            <text>a stable computer enviroment</text>
+            <postback>Question 5 C</postback>
+            </button>
+    </template>
+</category>
+
+<category>
+    <pattern>Question 5 *</pattern>
+    <template>
+        <think><set name= "ans"><star/></set> </think>
+        <condition name = "ans">
+            <li value = "A"><think>
+                 <set name = "Computer Hardware Engineer"> <map name="successor"><get name = "Computer Hardware Engineer"/></map></set>
+                </think></li>
+            <li value = "B"> <think>
+                <set name = "Cyber Security"> <map name="successor"><get name = "Cyber Security"/></map></set>
+                </think></li>
+            <li value = "C"> <think>
+                <set name = "Software Designer"> <map name="successor"><get name = "Software Designer"/></map></set>
+                <set name = "Machine Learning Engineer"> <map name="successor"><get name = "Machine Learning Engineer"/></map></set>
+                <set name = "Web Developer"> <map name="successor"><get name = "Web Developer"/></map></set>
+            </think></li>
+        </condition>
+        
+         here are your results of your career test <br/>
+    Cyber Security: <get name = "Cyber Security"/><br/>
+    Computer Hardware Engineer: <get name = "Computer Hardware Engineer"/><br/>
+    Machine Learning Engineer: <get name = "Machine Learning Engineer"/><br/>
+    Web Developer: <get name = "Web Developer"/><br/>
+    Software Designer: <get name = "Software Designer"/><br/>
+    Ask if you would like to learn more about any of the careers?
+    
+    </template>
+</category>
+
+<topic name= "Machine Learning Engineer">
+    <category>
+        <pattern>HOW MUCH CAN I MAKE</pattern>
+        <template>The range can fit from 90K to 180K a year</template>
+    </category>
+    
+    <category>
+        <pattern>WHAT EDUCATION IS NEEDED</pattern>
+        <template>Amaster's degree or a Ph.D. in computer science , machine learning or artifical intelligence</template>
+    </category>
+
+</topic>
+
+<topic name= "Software Designer">
+    <category>
+    <pattern>HOW MUCH CAN I MAKE</pattern>
+    <template>The range can fit from 90K to 160K a year</template>
+    </category>
+        
+    <category>
+        <pattern>WHAT EDUCATION IS NEEDED</pattern>
+        <template>A bachelor's or master's degree in computer science or software engineering.</template>
+    </category>
+</topic>
+
+<topic name= "Computer Hardware Engineer">
+    <category>
+        <pattern>HOW MUCH CAN I MAKE</pattern>
+        <template>The range can fit from 70K to 160K a year</template>
+    </category>
+    
+    <category>
+        <pattern>WHAT EDUCATION IS NEEDED</pattern>
+        <template>A bachelor's degree incomputer engineeringm or electrical engineering</template>
+    </category>
+</topic>
+
+<topic name= "Web Developer">
+    <category>
+        <pattern>HOW MUCH CAN I MAKE</pattern>
+        <template>The range can fit from 50K to 120K a year</template>
+    </category>
+    
+    <category>
+        <pattern>WHAT EDUCATION IS NEEDED</pattern>
+        <template>A bachelor's degree is not required but is recommended for computer science.</template>
+    </category>
+</topic>
+
+<topic name= "Cyber Security">
+    <category>
+        <pattern>HOW MUCH CAN I MAKE</pattern>
+        <template>The range can fit from 80K to 150K a year</template>
+    </category>
+    
+    <category>
+        <pattern>WHAT EDUCATION IS NEEDED</pattern>
+        <template>A bachelor's computer science or cybersecurity</template>
+    </category>
+</topic>
+
+<category>
+    <pattern>Tell Me More</pattern>
+    <template>I can tell you a lot</template>
+</category>
+
+</aiml>
